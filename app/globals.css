@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Roboto+Slab:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 220, 215, 201;
+  --background-start-rgb: 18, 18, 18;
+  --background-end-rgb: 28, 28, 28;
+  --primary-color: #FFD700; /* Dourado */
+  --secondary-color: #B8860B; /* Dourado escuro */
+  --accent-color: #DC143C; /* Vermelho escuro */
+  --dark-color: #121212; /* Preto profundo */
+  --light-color: #DCD7C9; /* Bege claro */
+  --border-color: #3A3A3A; /* Cinza escuro para bordas */
+  --card-bg: #1E1E1E; /* Cinza muito escuro para cards */
+  --input-bg: #2A2A2A; /* Cinza escuro para inputs */
+  --success-color: #2E8B57; /* Verde escuro */
+  --error-color: #8B0000; /* Vermelho escuro */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 220, 215, 201;
+    --background-start-rgb: 18, 18, 18;
+    --background-end-rgb: 28, 28, 28;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    )
+    fixed;
+  font-family: 'Roboto Slab', serif;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold py-3 px-6 rounded-sm shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wider text-sm border border-yellow-700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent text-yellow-500 font-bold py-3 px-6 rounded-sm border-2 border-yellow-600 hover:bg-yellow-900/20 transition-all duration-300 uppercase tracking-wider text-sm;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  
+  .btn-dark {
+    @apply bg-gray-900 text-yellow-500 font-bold py-3 px-6 rounded-sm border border-yellow-700 hover:bg-gray-800 transition-all duration-300 uppercase tracking-wider text-sm;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-8 relative inline-block font-serif text-yellow-500;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-3/4 h-1 bg-gradient-to-r from-yellow-600 to-transparent;
+    box-shadow: 0 1px 3px rgba(255, 215, 0, 0.3);
+  }
+  
+  .section-title-center {
+    @apply text-3xl md:text-4xl font-bold mb-8 relative text-center block mx-auto font-serif text-yellow-500;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .section-title-center::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent;
+    box-shadow: 0 1px 3px rgba(255, 215, 0, 0.3);
+  }
+  
+  .section-title-light {
+    @apply text-3xl md:text-4xl font-bold mb-8 relative inline-block font-serif text-gray-900;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
+  }
+  
+  .section-title-light::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-3/4 h-1 bg-gradient-to-r from-yellow-600 to-transparent;
+    box-shadow: 0 1px 3px rgba(255, 215, 0, 0.3);
+  }
+  
+  .container-custom {
+    @apply container mx-auto px-4 md:px-8 py-16 md:py-24;
+  }
+  
+  .card {
+    @apply bg-gray-900/80 p-6 rounded-sm border border-gray-800 shadow-xl hover:shadow-2xl transition-all duration-300;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 215, 0, 0.05);
+  }
+  
+  .input-field {
+    @apply bg-gray-800 border border-gray-700 text-gray-200 rounded-sm px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition-all duration-300;
+  }
+  
+  .nav-link {
+    @apply text-gray-300 hover:text-yellow-500 relative px-1 py-2 font-medium transition-all duration-300 uppercase tracking-wider text-sm;
+    font-family: 'Roboto Slab', serif;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-600 transition-all duration-300;
+    box-shadow: 0 1px 3px rgba(255, 215, 0, 0.3);
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
+
+/* Estilos personalizados para o calendário */
+.react-calendar {
+  @apply bg-gray-900 border border-gray-800 rounded-sm shadow-xl p-4 w-full max-w-md mx-auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 215, 0, 0.05);
+}
+
+.react-calendar__tile {
+  @apply text-gray-300 rounded-sm transition-all duration-300 py-3;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  @apply bg-gray-800 text-yellow-500;
+}
+
+.react-calendar__tile--now {
+  @apply bg-gray-800 text-yellow-500;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  @apply bg-gray-700 text-yellow-400;
+}
+
+.react-calendar__tile--active {
+  @apply bg-yellow-700 text-white;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  @apply bg-yellow-600;
+}
+
+.react-calendar__navigation button {
+  @apply text-gray-300 rounded-sm transition-all duration-300;
+}
+
+.react-calendar__navigation button:disabled {
+  @apply text-gray-600;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  @apply bg-gray-800 text-yellow-500;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+  will-change: opacity, transform;
+}
+
+.animate-slide-up {
+  animation: slideUp 1s ease-out;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-right {
+  animation: slideInRight 1s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s ease infinite;
+}
+
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Estilos vintage adicionais */
+.vintage-text {
+  @apply font-serif text-yellow-500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.vintage-text::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #eab308, transparent);
+}
+
+.vintage-border {
+  @apply border border-yellow-500/30 rounded-sm;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 215, 0, 0.05);
+  position: relative;
+}
+
+.vintage-border::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  pointer-events: none;
+}
+
+.vintage-bg {
+  @apply bg-gray-900;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233a3a3a' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  position: relative;
+}
+
+.vintage-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #eab308, transparent);
+}
+
+.vintage-shadow {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.vintage-button {
+  @apply bg-gradient-to-b from-yellow-700 to-yellow-600 text-black font-bold py-2 px-4 rounded-sm uppercase tracking-wider text-sm border border-yellow-800 shadow-md transition-all duration-300 transform hover:-translate-y-1;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.vintage-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.vintage-button:hover::before {
+  left: 100%;
+}
+
+.vintage-button-secondary {
+  @apply bg-transparent text-yellow-500 font-bold py-2 px-4 rounded-sm border-2 border-yellow-600 hover:bg-yellow-900/20 transition-all duration-300 uppercase tracking-wider text-sm transform hover:-translate-y-1;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.vintage-button-secondary::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #eab308, transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.vintage-button-secondary:hover::after {
+  transform: scaleX(1);
+}
+
+.vintage-card {
+  @apply bg-gray-900 p-6 rounded-sm border border-gray-800;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 215, 0, 0.05);
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233a3a3a' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  position: relative;
+}
+
+.vintage-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 80%, rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+}
+
+.vintage-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.5), transparent);
+  margin: 2rem 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.vintage-input {
+  @apply bg-gray-800 border border-gray-700 text-gray-200 rounded-sm px-4 py-3 w-full;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.vintage-header {
+  background-color: rgba(0, 0, 0, 0.85);
+  background-image: url('/images/header-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.vintage-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  opacity: 0.7;
+  animation: headerLight 15s infinite linear;
+  z-index: -1;
+}
+
+@keyframes headerLight {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.vintage-footer {
+  background-color: #121212;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233a3a3a' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+/* Otimizações de performance */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Reduzir o impacto das animações */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Versão mais leve da animação para dispositivos móveis */
+@media (max-width: 768px) {
+  .animate-fade-in {
+    animation: fadeInMobile 0.3s ease-out forwards;
+  }
+  
+  @keyframes fadeInMobile {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+} 
