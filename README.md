@@ -53,7 +53,7 @@ O design do site foi desenvolvido com foco em:
 
 1. Clone o repositório:
 ```bash
-git clone [url-do-repositorio]
+git clone https://github.com/DaniloMucio/Mucio-Car.git
 ```
 
 2. Instale as dependências:
@@ -61,16 +61,12 @@ git clone [url-do-repositorio]
 npm install
 ```
 
-3. Execute o projeto em desenvolvimento:
+3. Execute o projeto em modo de desenvolvimento:
 ```bash
 npm run dev
 ```
 
-4. Para build de produção:
-```bash
-npm run build
-npm start
-```
+4. Acesse http://localhost:3000 no seu navegador
 
 ## 📱 Responsividade
 
@@ -126,8 +122,7 @@ A Mucio Car é uma estética automotiva fundada em 2016 por Bruno Mucio na cidad
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/mucio-car.git
-cd mucio-car
+git clone https://github.com/DaniloMucio/Mucio-Car.git
 ```
 
 2. Instale as dependências:
@@ -135,12 +130,12 @@ cd mucio-car
 npm install
 ```
 
-3. Execute o servidor de desenvolvimento:
+3. Execute o projeto em modo de desenvolvimento:
 ```bash
 npm run dev
 ```
 
-4. Acesse o site em [http://localhost:3000](http://localhost:3000)
+4. Acesse http://localhost:3000 no seu navegador
 
 ## Estrutura do Projeto
 
